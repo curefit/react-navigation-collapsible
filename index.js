@@ -27,9 +27,10 @@ export const IS_IPHONE_X =
 
 const defaultHeaderHeight = Platform.select({ios: 44, android: 56, web: 50});
 const defaultTabHeight = 40;
-const safeBounceHeight = Platform.select({ios: 400, android: 100, web: 200});
+const safeBounceHeight = Platform.select({ios: 300, android: 100, web: 200});
 
 const getStatusBarHeight = (isLandscape) => {
+  return 0;
   if(Platform.OS.match(/android|web/)) return 0;
   if(isLandscape) return 0;
   return IS_IPHONE_X ? 44 : 20;
