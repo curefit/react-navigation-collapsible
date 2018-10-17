@@ -26,8 +26,8 @@ export const IS_IPHONE_X =
 
 
 const defaultHeaderHeight = Platform.select({ios: 44, android: 56, web: 50});
-const defaultTabHeight = 50;
-const safeBounceHeight = Platform.select({ios: 300, android: 100, web: 200});
+const defaultTabHeight = 40;
+const safeBounceHeight = Platform.select({ios: 400, android: 100, web: 200});
 
 const getStatusBarHeight = (isLandscape) => {
   if(Platform.OS.match(/android|web/)) return 0;
@@ -203,7 +203,7 @@ const collapsibleOptions = (configOptions, userOptions, navigation) => {
       ...userOptions.headerStyle,
       transform: [{translateY: headerTranslate}],
       overflow: 'hidden',
-      opacity: Platform.select({ios: headerOpacity, android: global.Expo ? headerOpacity : 1, web: 1}),
+      opacity: Platform.select({ios: headerOpacity, android: headerOpacity , web: 1}),
       height: headerHeight,
     },
     headerTransparent: true, 
@@ -331,9 +331,7 @@ export const withCollapsible = (WrappedScreen, collapsibleParams = {}) => {
       }
       return (
         <View style={{flex: 1}}>
-          <SafeAreaView style={{flex: 1}} forceInset={{bottom: 'never'}}>
-            <WrappedScreen {...props}/>
-          </SafeAreaView>
+          <WrappedScreen {...props}/>
           {!collapsibleParams.extraHeader 
             ? <CollapsibleHeaderBackView iOSCollapsedColor={collapsibleParams.iOSCollapsedColor} navigation={navigation} />
             : (<CollapsibleExtraHeader navigation={navigation} style={collapsibleParams.extraHeaderStyle}>
